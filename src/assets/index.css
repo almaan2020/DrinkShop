@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/*footer*/
+div.content-container {
+  min-height: calc(100vh - 42px);
+}
+/*end of footer*/
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*card buttons(view + favorite in product)*/
+.cardButton {
+  cursor: pointer;
+  font-size: 1.25rem !important;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.cardButton:hover {
+  color: black;
+}
+/*end of card buttons*/
+
+/*card image (product)*/
+.card-img {
+  max-width: 20% !important;
+  margin: 10px auto 4px auto;
+}
+
+.card-img-container {
+  min-height: 60%;
+}
+/*end of card image (product)*/
+
+/*product modal */
+.product-modal-info {
+  max-width: 60%;
+}
+
+.product-modal-pic {
+  min-width: 30%;
+}
+
+.product-modal-pic > img {
+  max-width: 100%;
+  height: 50vh;
+}
+/*end of product modal */
+
+/*cart list*/
+.cart-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30vh;
+  left: 0;
+  height: 30vh;
+}
+/*end of cart list*/
+
+/*cart&favorite items*/
+.cf-card-info {
+  max-width: 70%;
+}
+.cf-card-pic {
+  min-width: 20%;
+}
+.cf-card-pic > img {
+  max-width: 100%;
+  height: 18vh;
+}
+/*end of cart&favorite item*/
+
+/****change pagination color****/
+.pagination > li > a {
+  background-color: white;
+  color: #dc3545;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: #5a5a5a;
+  background-color: #eee;
+  border-color: #ddd;
+}
+
+.pagination > .active > a {
+  color: white !important;
+  background-color: #dc3545 !important;
+  border: solid 1px #dc3545 !important;
+}
+
+.pagination > .active > a:hover {
+  background-color: #dc3545 !important;
+  border: solid 1px #dc3545;
+}

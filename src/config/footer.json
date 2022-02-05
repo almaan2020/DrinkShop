@@ -1,0 +1,12 @@
+{
+    "style":{
+        "position": "relative",
+        "left": 0,
+        "bottom": 0,
+        "fontSize": 14,
+        "height": 42,
+        "lineHeight": "42px"
+    },
+    "copyRightText":"copyright DROPP 2021-2022;",
+    "backgroundColor":"light"
+}
