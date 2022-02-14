@@ -10,7 +10,7 @@ export function getProducts(currentPage, query) {
     return http.get(`${endPoint}&food=${query}`);
 }
 
-export const getMapProducts = async (idArray, products, setProducts) => {
+export const getMapProducts = async (idArray, setProducts) => {
     axios.all(
         idArray.map((id) =>
             axios.get(`${apiEndpoint}/${id}`)
@@ -18,11 +18,11 @@ export const getMapProducts = async (idArray, products, setProducts) => {
     )
         .then(
             axios.spread((...response) => {
-                products = [];
+                const products = [];
                 for (var i = 0; i < idArray.length; ++i) {
                     products.push(response[i].data);
                 }
-                setProducts(products)
+                setProducts([...products])    //destruction cause new state and rerender
             })
         );
 }
