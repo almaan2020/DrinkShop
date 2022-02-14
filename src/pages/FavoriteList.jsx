@@ -13,8 +13,11 @@ const FavoriteList = () => {
 
   useEffect(() => {
     fillFavIds();
-    getMapProducts(favoriteIds, favProducts, setFavProducts);
-  }, []);
+  }, [fillFavIds]);
+
+  useEffect(() => {
+    getMapProducts(favoriteIds, setFavProducts);
+  }, [favoriteIds]);
 
   return (
     <div className="row pt-4 d-block">
