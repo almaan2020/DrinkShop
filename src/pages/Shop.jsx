@@ -18,9 +18,15 @@ const Shop = () => {
 
   useEffect(() => {
     fillProducts();
+  }, [fillProducts]);
+
+  useEffect(() => {
     fillFavIds();
+  }, [fillFavIds]);
+
+  useEffect(() => {
     fillCartIds();
-  }, []);
+  }, [fillCartIds]);
 
   if (products.length === 0)
     return (
