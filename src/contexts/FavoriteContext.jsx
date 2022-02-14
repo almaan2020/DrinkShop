@@ -1,22 +1,20 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import { pull } from "lodash";
 
 export const FavContext = createContext();
 
-class FavContextProvider extends Component {
-  state = {
-    favoriteIds: [],
-  };
+const FavContextProvider = (props) => {
+  const [favoriteIds, setFavIds] = useState([]);
 
-  fillFavIds = () => {
+  const fillFavIds = useCallback(() => {
     let favIds = localStorage.getItem("favProducts");
     //convert localStorage to array of numbers:
     favIds = favIds ? favIds.split(",").map((item) => parseInt(item)) : [];
-    this.setState({ favoriteIds: favIds });
-  };
+    setFavIds([...favIds]); //destruction cause new state and rerender
+  }, [setFavIds]);
 
-  handleFavorite = (id) => {
-    let favIds = this.state.favoriteIds;
+  const handleFavorite = (id) => {
+    let favIds = favoriteIds;
     if (favIds.includes(id)) {
       pull(favIds, id);
     } else {
@@ -24,22 +22,20 @@ class FavContextProvider extends Component {
     }
     localStorage.removeItem("favProducts");
     localStorage.setItem("favProducts", favIds);
-    this.setState({ favoriteIds: favIds });
+    setFavIds([...favIds]);
   };
 
-  render() {
-    return (
-      <FavContext.Provider
-        value={{
-          ...this.state,
-          fillFavIds: this.fillFavIds,
-          handleFavorite: this.handleFavorite,
-        }}
-      >
-        {this.props.children}
-      </FavContext.Provider>
-    );
-  }
-}
+  return (
+    <FavContext.Provider
+      value={{
+        favoriteIds,
+        fillFavIds,
+        handleFavorite,
+      }}
+    >
+      {props.children}
+    </FavContext.Provider>
+  );
+};
 
 export default FavContextProvider;
