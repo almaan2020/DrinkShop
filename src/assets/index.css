@@ -42,12 +42,23 @@ div.content-container {
 
 /*card image (product)*/
 .card-img {
-  max-width: 20% !important;
+  max-width: 18% !important;
+  max-height: 28vh;
   margin: 10px auto 4px auto;
 }
 
 .card-img-container {
-  min-height: 60%;
+  height: 30vh;
+}
+
+@media all and (max-width: 576px) {
+  .card-img {
+    max-width: 12% !important;
+    max-height: 32vh;
+  }
+  .card-img-container {
+    height: 36vh;
+  }
 }
 /*end of card image (product)*/
 
@@ -90,27 +101,22 @@ div.content-container {
 /*end of cart&favorite item*/
 
 /****change pagination color****/
-.pagination > li > a {
+.pagination > li > button {
   background-color: white;
-  color: #dc3545;
+  color: #5a5a5a;
 }
 
-.pagination > li > a:focus,
-.pagination > li > a:hover,
+.pagination > li > button:focus,
+.pagination > li > button:hover,
 .pagination > li > span:focus,
 .pagination > li > span:hover {
-  color: #5a5a5a;
+  color: #7a7a7a;
   background-color: #eee;
   border-color: #ddd;
 }
 
-.pagination > .active > a {
+.pagination > .active > button {
   color: white !important;
   background-color: #dc3545 !important;
   border: solid 1px #dc3545 !important;
-}
-
-.pagination > .active > a:hover {
-  background-color: #dc3545 !important;
-  border: solid 1px #dc3545;
 }
