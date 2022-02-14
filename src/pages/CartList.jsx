@@ -16,12 +16,11 @@ const CartList = () => {
 
   useEffect(() => {
     fillCartIds();
-    getMapProducts(cartIds, cartProducts, setCartProducts);
-  }, []);
+  }, [fillCartIds]);
 
-  const updateCartProducts = () => {
-    setCartProducts(cartProducts.filter((p) => cartIds.includes(p[0].id)));
-  };
+  useEffect(() => {
+    getMapProducts(cartIds, setCartProducts);
+  }, [cartIds]);
 
   return (
     <div className="row pt-4 d-block">
@@ -50,7 +49,6 @@ const CartList = () => {
                   image_url={p[0].image_url}
                   srm={p[0].srm}
                   handleRemoveCart={handleRemoveCart}
-                  updateCartProducts={() => updateCartProducts()}
                 />
               ))}
           </div>
