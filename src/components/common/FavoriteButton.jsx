@@ -5,9 +5,9 @@ import { FavContext } from "../../contexts/FavoriteContext";
 const FavoriteButton = (props) => {
   const { id } = props;
   const { favoriteIds, handleFavorite } = useContext(FavContext);
-  const isFavorite = includes(favoriteIds, id) ? true : false;
 
   const getClassFont = () => {
+    const isFavorite = includes(favoriteIds, id) ? true : false;
     if (isFavorite) return "cardButton fa fa-star";
     return "cardButton fa fa-star-o";
   };
