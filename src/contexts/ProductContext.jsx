@@ -1,51 +1,47 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, useState, useCallback } from "react";
+import {
+  useNavigate,
+  createSearchParams,
+  useSearchParams,
+} from "react-router-dom";
 import { getProducts } from "../services/productService";
 
 export const ProductContext = createContext();
 
-class ProductContextProvider extends Component {
-  state = {
-    products: [],
-    currentPage: 1,
-    query: null,
-    sortData: { path: "name", order: "asc" },
+const ProductContextProvider = (props) => {
+  const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams({
+    page: 1,
+    query: "",
+    sort: "name",
+    order: "asc",
+  });
+
+  const fillProducts = useCallback(async () => {
+    const { page, query } = Object.fromEntries([...searchParams]);
+    const { data } = await getProducts(page, query);
+    setProducts([...data]);
+  }, [searchParams]);
+
+  const handleSearch = (page, query, sort, order) => {
+    const params = { page, query, sort, order };
+    navigate(`?${createSearchParams(params)}`);
   };
 
-  fillProducts = async () => {
-    const { currentPage, query } = this.state;
-    const { data } = await getProducts(currentPage, query);
-    this.setState({ products: data });
-  };
-
-  handleFilter = async (query) => {
-    const { data } = await getProducts(1, query);
-    this.setState({ products: data, query: query, currentPage: 1 });
-  };
-
-  handlePage = async (page) => {
-    const { data } = await getProducts(page, null);
-    this.setState({ products: data, query: null, currentPage: page });
-  };
-
-  handleSort = (sortData) => {
-    this.setState({ sortData: sortData });
-  };
-
-  render() {
-    return (
-      <ProductContext.Provider
-        value={{
-          ...this.state,
-          fillProducts: this.fillProducts,
-          handleFilter: this.handleFilter,
-          handlePage: this.handlePage,
-          handleSort: this.handleSort,
-        }}
-      >
-        {this.props.children}
-      </ProductContext.Provider>
-    );
-  }
-}
+  return (
+    <ProductContext.Provider
+      value={{
+        products,
+        searchParams,
+        fillProducts,
+        handleSearch,
+      }}
+    >
+      {props.children}
+    </ProductContext.Provider>
+  );
+};
 
 export default ProductContextProvider;
