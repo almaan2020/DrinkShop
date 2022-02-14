@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 const CartItem = (props) => {
-  const { id, name, image_url, srm ,handleRemoveCart,updateCartProducts} = props;
+  const { id, name, image_url, srm, handleRemoveCart } = props;
   return (
     <div className="col-12 p-1">
       <div className="row">
@@ -20,7 +20,7 @@ const CartItem = (props) => {
                   <div className="d-inline">
                     <Button
                       variant="outline-danger"
-                      onClick={() => {handleRemoveCart(id);updateCartProducts();}}
+                      onClick={() => handleRemoveCart(id)}
                     >
                       <i className="fa fa-trash-o"></i>
                     </Button>
